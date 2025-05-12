@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 	function promise2(arr=[]){
 		return new Promise((resolve,reject)=>{
 			setTimeout(()=>{
+				console.log(arr,"mazhar")
 				resolve(arr.filter((el)=>el%2===0))
 			},1000)
 		})
@@ -22,15 +23,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 			},2000)
 		})
 	}
-	let promise = promise1().then((res)=>{
+	let promise = promise1().
+		then((res)=>{
 		//div.textContent =String(res)
 		return promise2(res)
-	}).
-		then((res)=>{
+	}).then((res)=>{
+		console.log(res);
+		div.textContent =String(res)
+			return promise3(res)
+	}).then((res)=>{
+	console.log(res);
 			div.textContent =String(res)
-			return promise3(res)})
-}).
-		then((res)=>{
-			div.textContent =String(res)
+})
 })
 
